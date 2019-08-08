@@ -216,7 +216,7 @@ class TokenMixin:
 
     def create_private_token(self):
         from authentication.models import PrivateToken
-        token = PrivateToken.objects.create(user=self)
+        token, created = PrivateToken.objects.get_or_create(user=self)
         return token
 
     def refresh_private_token(self):
